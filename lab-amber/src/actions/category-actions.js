@@ -7,9 +7,11 @@ export function categoryCreate(value) {
 }
 
 export function categoryUpdate(values) {
+  console.log('in actions', values);
   return {type: CATEGORY_UPDATE, values};
 }
 
 export function categoryDestroy(id) {
+  console.log('in actions destroy', id);
   return {type: CATEGORY_DESTROY, id};
 }

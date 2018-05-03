@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
   render() {
     return <div>
       <h2>Create A Category:</h2>
-      <CategoryForm></CategoryForm>
+      <CategoryForm name="create"></CategoryForm>
       <h1>Your Budget Summary</h1>
       <CategoryList></CategoryList>
     </div>
@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: () => dispatch(categoryCreate()),
-    categoryUpdate: () => dispatch(categoryUpdate()),
+    categoryUpdate: values => dispatch(categoryUpdate(values)),
     categoryDestroy: id => dispatch(categoryDestroy(id)),
   }
 }

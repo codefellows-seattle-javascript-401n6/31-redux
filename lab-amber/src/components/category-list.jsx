@@ -12,7 +12,7 @@ class CategoryList extends React.Component {
 
   displayAllCategories() {
     return this.props.categories.map(category => {
-      return <CategoryItem key={category.id} id={category.id} name={category.name} budget={category.budget}></CategoryItem>
+      return <CategoryItem key={category.id} id={category.id} name={category.name} budget={category.budget} isEditing={category.isEditing}></CategoryItem>
     });
   }
 

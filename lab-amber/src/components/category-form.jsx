@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
   categoryCreate,
+  categoryUpdate,
 } from '../actions/category-actions.js';
 
 class CategoryForm extends React.Component {
@@ -9,7 +10,8 @@ class CategoryForm extends React.Component {
     super(props);
     this.state = {
       name: '',
-      budget: 0
+      budget: 0,
+      isEditing: false,
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBudgetChange = this.handleBudgetChange.bind(this);
@@ -31,9 +33,16 @@ class CategoryForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('category-form state', this.state);
+    console.log('submit form name', this.props.name);
+    console.log('submit form id', this.props.id);
+    let submitFormName = this.props.name;
     event.preventDefault();
-    this.props.categoryCreate(this.state);
+    if (this.props.name === 'create') {
+      this.props.categoryCreate(this.state);
+    } else if (this.props.name === 'update') {
+      let newValue = Object.assign(this.state, {isEditing: false, id: this.props.id});
+      this.props.categoryUpdate(this.state);
+    }
   }
 
 
@@ -41,8 +50,8 @@ class CategoryForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <input onChange={this.handleNameChange} type="text" placeholder="category name"/>
-        <input onChange={this.handleBudgetChange}name="budget" type="text" placeholder="budget amount"/>
-        <button type="submit">Add</button>
+        <input onChange={this.handleBudgetChange} name="budget" type="text" placeholder="budget amount"/>
+        <button type="submit">Submit</button>
       </form>
     )
   }
@@ -55,6 +64,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: val => dispatch(categoryCreate(val)),
+    categoryUpdate: val => dispatch(categoryUpdate(val)),
   }
 }
 
