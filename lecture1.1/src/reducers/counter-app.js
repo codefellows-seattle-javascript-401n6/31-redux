@@ -13,7 +13,9 @@ export default function counterReducer(state, action) {
   }
 
   switch(action.type) {
-    case INCREMENT: return {data: state.data + 1}
+    case INCREMENT: 
+      let newState = {};
+      return Object.assign(newState, state, {data: state.data + 1});
     case DECREMENT: return {data: state.data - 1}
     case INCREMENT_BY: return {data: state.data + action.value}
     case DECREMENT_BY: return {data: state.data - action.value}
