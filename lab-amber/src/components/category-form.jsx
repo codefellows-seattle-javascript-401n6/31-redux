@@ -33,8 +33,6 @@ class CategoryForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('submit form name', this.props.name);
-    console.log('submit form id', this.props.id);
     let submitFormName = this.props.name;
     event.preventDefault();
     if (this.props.name === 'create') {
@@ -49,8 +47,8 @@ class CategoryForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleNameChange} type="text" placeholder="category name"/>
-        <input onChange={this.handleBudgetChange} name="budget" type="text" placeholder="budget amount"/>
+        <input onChange={this.handleNameChange} type="text" placeholder="category name" required="true"/>
+        <input onChange={this.handleBudgetChange} name="budget" type="text" placeholder="budget amount" required="true"/>
         <button type="submit">Submit</button>
       </form>
     )

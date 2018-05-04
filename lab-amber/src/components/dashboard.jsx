@@ -12,9 +12,9 @@ import CategoryForm from './category-form.jsx';
 class Dashboard extends React.Component {
   render() {
     return <div>
+      <h1>Manage Your Budget</h1>
       <h2>Create A Category:</h2>
       <CategoryForm name="create"></CategoryForm>
-      <h1>Your Budget Summary</h1>
       <CategoryList></CategoryList>
     </div>
   }
