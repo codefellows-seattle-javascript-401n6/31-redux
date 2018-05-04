@@ -13,27 +13,31 @@ class CategoryItem extends React.Component {
 
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleOffEdit = this.toggleOffEdit.bind(this);
   }
 
   toggleEdit(event) {
-    console.log('edit toggled target', event.target);
-    console.log('edit toggled target', event.target.id);
     let id = event.target.id;
     this.props.categoryUpdate({isEditing: true, id});;
   }
 
+  toggleOffEdit(event) {
+    let id = event.target.id;
+    this.props.categoryUpdate({isEditing: false, id});;
+  }
+
   handleDelete(event) {
     event.preventDefault();
-    console.log('delete click id', event.target.id);
     let id = event.target.id;
     this.props.categoryDestroy(id);
   }
 
   render() {
-    console.log('is this item editing? ', this.props.isEditing);
     if (this.props.isEditing === true) {
       return (
-        <CategoryForm name="update" id={this.props.id}></CategoryForm>
+        <div>
+          <CategoryForm name="update" id={this.props.id}></CategoryForm><button onClick={this.toggleOffEdit} id={this.props.id}>Cancel</button>
+        </div>
       )
     }
     return (
