@@ -1,3 +1,5 @@
+'use strict';
+
 const HtmlPlugin = require('html-webpack-plugin')
 
 module.exports = {
