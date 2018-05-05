@@ -1,0 +1,69 @@
+import React from 'react';
+import {connect} from 'react-redux';
+import {
+    categoryCreate,
+    categoryUpdate,
+} from '../actions/category-actions.js'
+
+class CategoryForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            budget: 0,
+            isEditing: false,
+        }
+       this.handleNameChange = this.handleNameChange.bind();
+       this.handleNameChange = this.handleBudgetChange.bind();
+       this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleNameChange(event) {
+        let newState = {
+            name: event.target.value
+        }
+        this.setState(newState);
+    }
+
+    handleBudgetChange(event) {
+        let newState = {
+            budget: event.target.value
+        }
+        this.setState(newState);
+    }
+
+
+    handleSubmit(event) {
+        let nameForm = this.props.name;
+        event.preventDefault();
+        if(this.props.name === 'create') {
+            this.props.categoryCreate(this.state);
+        } else if (this.props.name === 'update') {
+            let newValue = Objec.assign(this.state, {isEditing: false, id: this.props.id});
+            this.props.categoryUpdate(this.state);
+        }
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <input onChange={this.handleNameChange} name="name" type="text" placeholder="category name" required="true" />
+                <input onChnage={this.handleBudgetChange} name="budget" type="text" placeholder="budget" required="true" />
+                <button type="submit">Submit</button>
+            </form>
+        )
+    }
+}
+
+const mapStateToProps = state => ({
+    categories: state.categories
+});
+
+const mapDispatchToProps = (dispatch, getState) => {
+    return {
+        categoryCreate: value => dispatch(categoryCreate(value)),
+        categoryUpdate: value => dispatch(categoryUpdate(value)),
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CategoryForm);
