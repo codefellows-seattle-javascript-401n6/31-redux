@@ -13,10 +13,10 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          < Route exact path = '/' component={Dashboard} />
+          <Route exact path = '/' component={Dashboard} />
         </BrowserRouter>
       </Provider>
-    )
+    );
   }
 }
 

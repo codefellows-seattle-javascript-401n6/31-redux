@@ -9,45 +9,56 @@ class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      timestamp: new Date(),
       name: '',
       budget: '',
       isEditing: false,
-    }
+    };
 
-    this.handlChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   handleChange(ev) {
-    let newState = {
-      name: ev.target.value
-    }
-    this.setState(newState);
+    this.setState({[ev.target.name]: ev.target.value});
   }
 
   handleSubmit(ev) {
-    let submitFormName = this.props.name;
     ev.preventDefault();
     if (this.props.name === 'create') {
-      this.props.categoryCreate(this.state, {isEditing: false, 
-        id: this.props.id});
-      let newValue = Object.assign(this.state, {isEditing: false, 
-        id: this.props.id});
-       this.props.categoryUpdate(this.state);
+      this.props.categoryCreate(this.state, {isEditing: false
+      });
+    }
+    if (this.props.name === 'update') {
+      let newValue = Object.assign(this.state, {isEditing: false
+      });
+      this.props.categoryUpdate(newValue);
     }
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} name="name" type="text" placeholder="category name" required="true"/>
-        <input onChange={this.handleChange} 
-        name="budget" type="text" 
-        placeholder="budget amount" required="true"/>
-        <button type="submit">
-        Submit</button>
+      <form className="category-form" onSubmit={this.handleSubmit}>
+        <input 
+          onChange={this.handleChange} 
+          name="name" 
+          type="text" 
+          placeholder="name" 
+          value={this.state.name}
+        />
+        <input 
+          onChange={this.handleChange} 
+          name="budget" 
+          type="text" 
+          placeholder="budget amount" 
+          value={this.state.budget}
+        />
+        <button 
+          type="submit">
+          Submit
+        </button>
       </form>
-    )
+    );
   }
 }
 
@@ -59,7 +70,7 @@ const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: val => dispatch(categoryCreate(val)),
     categoryUpdate: val => dispatch(categoryUpdate(val)),
-  }
-}
+  };
+};
 
 export default connect (mapStateToProps, mapDispatchToProps)(CategoryForm);
