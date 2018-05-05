@@ -11,7 +11,7 @@ class CategoryForm extends React.Component {
     this.state = {
       timestamp: new Date(),
       name: '',
-      budget: '',
+      budget: 0,
       isEditing: false,
     };
 
@@ -26,19 +26,18 @@ class CategoryForm extends React.Component {
   handleSubmit(ev) {
     ev.preventDefault();
     if (this.props.name === 'create') {
-      this.props.categoryCreate(this.state, {isEditing: false
-      });
+      this.props.categoryCreate(this.state);
     }
     if (this.props.name === 'update') {
-      let newValue = Object.assign(this.state, {isEditing: false
+      let newValue = Object.assign(this.state, {isEditing: false, id: this.props.id
       });
-      this.props.categoryUpdate(newValue);
+      this.props.categoryUpdate(this.state); //newvalue
     }
   }
 
   render() {
     return (
-      <form className="category-form" onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
         <input 
           onChange={this.handleChange} 
           name="name" 
@@ -50,7 +49,7 @@ class CategoryForm extends React.Component {
           onChange={this.handleChange} 
           name="budget" 
           type="text" 
-          placeholder="budget amount" 
+          placeholder="budget" 
           value={this.state.budget}
         />
         <button 
