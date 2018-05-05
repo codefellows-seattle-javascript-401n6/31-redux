@@ -13,11 +13,10 @@ class CategoryList extends React.Component {
     console.log('categories', this.props.categories);
     return this.props.categories.map((categories, index) => {
 
-      return <CategoryItem name={categories.name} budget={categories.budget}
-      key={index} index={index}
-      // updateNote={this.props.updateNote}
-      // removeNote={this.props.removeNote}
-      // cancel={this.props.cancel}
+      return <CategoryItem name={categories.name} budget={categories.budget} timestamp={categories.timestamp}
+      key={index} index={index} id={categories.id}
+      catUpdate={this.props.catUpdate}
+      catDestroy={this.props.catDestroy}
       />
     });
   }

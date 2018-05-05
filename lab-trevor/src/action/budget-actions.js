@@ -1,6 +1,6 @@
 export const CATEGORY_CREATE = 'CATEGORY_CREATE';
 export const CATEGORY_UPDATE = 'CATEGORY_UPDATE';
-export const CATEGORY_DESTORY = 'CATEGORY_DESTORY';
+export const CATEGORY_DESTROY = 'CATEGORY_DESTROY';
 
 
 export function catCreate(data) {
@@ -12,6 +12,6 @@ export function catUpdate(data) {
 }
 
 export function catDestroy(data) {
-	return {type: CATEGORY_DESTORY, data}
+	return {type: CATEGORY_DESTROY, data}
 }
 
