@@ -5,7 +5,7 @@ const path = require('path');
 
 const config = {
   mode: 'development', // production
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: './src/main.jsx', // name of java script file
   output: {
     path: path.resolve(__dirname, './dist'), // puts dist in current working directory
