@@ -6,8 +6,8 @@ import {
 import uuidv4 from 'uuid/v4';
 
 const initialState = {
-  categories: []
-}
+  categories: [],
+};
 
 export default function categoryReducer(state, action) {
   if (state === undefined) {
@@ -29,13 +29,9 @@ export default function categoryReducer(state, action) {
   case CATEGORY_UPDATE:
     currentCategories = state.categories.slice();
     let categoryToUpdate = currentCategories.find(category => {
-      console.log('category.id', category.id);
-      console.log('action', action.values);
       return category.id === action.values.id;
     });
     categoryIndex = currentCategories.indexOf(categoryToUpdate);
-    console.log('currentCategories[categoryIndex]', currentCategories[categoryIndex]);
-    console.log('current cat', currentCategories);
     currentCategories[categoryIndex].isEditing = !currentCategories[categoryIndex].isEditing;
     if (action.values.name) {
       currentCategories[categoryIndex].name = action.values.name;
@@ -47,7 +43,7 @@ export default function categoryReducer(state, action) {
 
   case CATEGORY_DESTROY:
     currentCategories = state.categories.slice();
-    let categoryDestroy = currentCategories.find(category => {
+    let categoryToRemove = currentCategories.find(category => {
       return category.id === action.id;
     });
     categoryIndex = currentCategories.indexOf(categoryToRemove);

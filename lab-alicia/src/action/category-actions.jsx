@@ -6,10 +6,10 @@ export const categoryCreate = value => {
   return {type: CATEGORY_CREATE, value};
 };
 
-export function categoryUpdate(values) {
+export const categoryUpdate = values => {
   return {type: CATEGORY_UPDATE, values};
-}
+};
 
-export function categoryDestroy(id) {
+export const categoryDestroy = id => {
   return {type: CATEGORY_DESTROY, id};
-}
+};

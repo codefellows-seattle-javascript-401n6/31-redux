@@ -16,7 +16,7 @@ class Dashboard extends React.Component {
       <h2>Create A Category:</h2>
       <CategoryForm name="create"></CategoryForm>
       <CategoryList></CategoryList>
-    </div>
+    </div>;
   }
 }
 
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch, getState) => {
     categoryCreate: () => dispatch(categoryCreate()),
     categoryUpdate: values => dispatch(categoryUpdate(values)),
     categoryDestroy: id => dispatch(categoryDestroy(id)),
-  }
-}
+  };
+};
 
 export default connect (mapStateToProps, mapDispatchToProps)(Dashboard);
