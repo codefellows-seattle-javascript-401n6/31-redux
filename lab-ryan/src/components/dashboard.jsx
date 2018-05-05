@@ -4,7 +4,7 @@ import {
     categoryCreate,
     categoryUpdate,
     categoryDestroy,
-} from '..action/category-actions.js';
+} from '..actions/category-actions.js';
 
 import CategoryList from './category-list.jsx';
 import CategoryForm from './category-form.jsx';
