@@ -13,10 +13,12 @@ class CategoryList extends React.Component {
   displayAllCategories() {
     return this.props.categories.map(category => {
       return <CategoryItem 
-      key={category.id} id={category.id} 
-      name={category.name} budget={category.budget}
-      isEditing={category.isEditing}>
-      </CategoryItem>
+        key={category.id} 
+        id={category.id} 
+        name={category.name} 
+        budget={category.budget}
+        isEditing={category.isEditing}>
+      </CategoryItem>;
     });
   }
 
@@ -26,7 +28,7 @@ class CategoryList extends React.Component {
         <h2>Current budget list:</h2>
         <ul>{this.displayAllCategories()}</ul>
       </div>
-    )
+    );
   }
 }
 
@@ -37,7 +39,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryCreate: val => dispatch(categoryCreate(val)),
-    }
-  }
+  };
+};
 
-  export default connect (mapStateToProps, mapDispatchToProps)(CategoryList);
+export default connect (mapStateToProps, mapDispatchToProps)(CategoryList);
