@@ -20,13 +20,14 @@ class Dashboard extends React.Component {
     return <div>
          <h1>{this.props.appName}</h1>
          <CategoryForm createCategory={this.props.catCreate}/>
-         <CategoryList categories={this.props.categories}/>
+         <CategoryList categories={this.props.categories} 
+                       catUpdate={this.props.catUpdate}
+                       catDestroy={this.props.catDestroy} />
     </div>
  }
 };
 
 const mapStateToProps = state => ({
-  // data: state.data,
   appName: state.appName,
   categories: state.categories
 });
@@ -35,6 +36,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     catCreate: (data) => dispatch(catCreate(data)),
+    catUpdate: (data) => dispatch(catUpdate(data)),
+    catDestroy: (data) => dispatch(catDestroy(data))
   }
 };
 
