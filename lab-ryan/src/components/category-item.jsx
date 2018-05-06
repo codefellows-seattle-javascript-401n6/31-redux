@@ -16,13 +16,13 @@ class CategoryItem extends React.Component {
         this.handleRemove = this.handleRemove.bind(this);
     }
 
-    toggleEdit(event) {
-        let id = event.target.id;
-        this.props.categoryUpdate({isEditing: trus, id });
+    toggleEdit(event, id) {
+        // let id = event.target.id;
+        this.props.categoryUpdate({isEditing: true, id });
     }
 
-    toggleEditOff(event) {
-        let id = event.target.id;
+    toggleEditOff(event, id) {
+        // let id = event.target.id;
         this.props.categoryUpdate({isEditing: false, id});
     }
 
@@ -33,19 +33,20 @@ class CategoryItem extends React.Component {
     }
 
     render() {
+        const categoryId = this.props.id;
         if(this.props.isEditing === true) {
             return (
                 <div>
-                    <CategoryForm name="update" id={this.props.id}></CategoryForm>
-                    <button onClick={this.toggleEditOff} id={this.props.id}>Edit Off</button>
+                    <CategoryForm id={this.props.id} name="update"></CategoryForm>
+                    <button onClick={(e)=>this.toggleEditOff(e, categoryId)}>Edit Off</button>
                 </div>
             )
         }
         return (
-            <li key={this.props.key} id={this.props.id}>
+            <li key={this.props.key}>
             {this.props.name}: ${this.props.budget}
-            <button id={this.props.id} onClick={this.handleRemove}>Remove</button>
-            <button id={this.props.id} onClick={this.toggleEdit}>Edit On</button>
+            <button onClick={this.handleRemove}>Remove</button>
+            <button onClick={(e)=>this.toggleEdit(e, categoryId)}>Edit On</button>
             </li>
         )
     }

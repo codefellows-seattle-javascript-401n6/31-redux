@@ -13,8 +13,8 @@ class CategoryForm extends React.Component {
             budget: 0,
             isEditing: false,
         }
-       this.handleNameChange = this.handleNameChange.bind();
-       this.handleNameChange = this.handleBudgetChange.bind();
+       this.handleNameChange = this.handleNameChange.bind(this);
+       this.handleBudgetChange = this.handleBudgetChange.bind(this);
        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -34,12 +34,12 @@ class CategoryForm extends React.Component {
 
 
     handleSubmit(event) {
-        let nameForm = this.props.name;
+        let submitFormName = this.props.name;
         event.preventDefault();
         if(this.props.name === 'create') {
             this.props.categoryCreate(this.state);
         } else if (this.props.name === 'update') {
-            let newValue = Objec.assign(this.state, {isEditing: false, id: this.props.id});
+            let newValue = Object.assign(this.state, {isEditing: false, id: this.props.id});
             this.props.categoryUpdate(this.state);
         }
     }
@@ -47,8 +47,8 @@ class CategoryForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input onChange={this.handleNameChange} name="name" type="text" placeholder="category name" required="true" />
-                <input onChnage={this.handleBudgetChange} name="budget" type="text" placeholder="budget" required="true" />
+                <input onChange={this.handleNameChange} type="text" placeholder="category name" required="true"/>
+                <input onChange={this.handleBudgetChange} name="budget" type="text" placeholder="budget" required="true"/>
                 <button type="submit">Submit</button>
             </form>
         )

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CategoryItem from './category-item.jsx';
 import { categoryCreate } from '../actions/category-actions.js';
 
-class CategoryList extends React.Components {
+class CategoryList extends React.Component {
     constructor(props) {
         super(props);
 

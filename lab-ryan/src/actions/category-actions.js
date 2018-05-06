@@ -11,5 +11,5 @@ export function categoryUpdate(value) {
 }
 
 export function categoryDestoy(value) {
-    return {type: CATEGORY_DESTROY, id}
+    return {type: CATEGORY_DESTROY, value}
 }

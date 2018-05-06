@@ -26,6 +26,7 @@
     "redux": "^4.0.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "uuidv1": "^1.4.24",
     "webpack": "^4.7.0",
     "webpack-cli": "^2.1.2",
     "webpack-dev-server": "^3.1.4"

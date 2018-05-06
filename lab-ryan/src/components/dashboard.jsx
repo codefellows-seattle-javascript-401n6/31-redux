@@ -4,12 +4,12 @@ import {
     categoryCreate,
     categoryUpdate,
     categoryDestroy,
-} from '..actions/category-actions.js';
+} from '../actions/category-actions.js';
 
 import CategoryList from './category-list.jsx';
 import CategoryForm from './category-form.jsx';
 
-class Dashboard extends React. Component{
+class Dashboard extends React.Component{
     constructor(props) {
         super(props);
     }
@@ -17,7 +17,7 @@ class Dashboard extends React. Component{
     render() {
         return <div>
            <h1>{this.props.addName}</h1>
-           <CategoryForm createCategory={thisp.props.createCategory} />
+           <CategoryForm name='create' createCategory={this.props.createCategory} />
            <CategoryList categories={this.props.categories}
                         categoryUpdate={this.props.categoryUpdate}
                         categoryDestroy={this.props.categoryDestroy}
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch, getState) => {
     }
 };
 
-export default connectm(mapStateToProps, mapDispatchToProps)(dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

@@ -29,12 +29,12 @@ export default function categoryReducer(state, action) {
         case CATEGORY_UPDATE:
             currentCategories = state.categories.slice();
             let toUpdate = currentCategories.find(category => {
-                return category.id === action.values.id;
+                return category.id === action.value.id;
             });
             categoryIndex = currentCategories.indexOf(toUpdate);
             currentCategories[categoryIndex].isEditing = !currentCategories[categoryIndex].isEditing;
-            if(action.values.name) {
-                currentCategories[categoryIndex].budget = action.values.budget;
+            if(action.value.name) {
+                currentCategories[categoryIndex].budget = action.value.budget;
             }
             return Object.assign(newState, state, {categories: currentCategories});
         
