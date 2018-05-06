@@ -3,7 +3,7 @@ import {
     CATEGORY_UPDATE,
     CATEGORY_DESTROY,
     categoryDestoy,
-} from '../actions/category-actions.jsx';
+} from '../actions/category-actions.js';
 import uuidv1 from 'uuid/v1';
 
 const origionalState = {

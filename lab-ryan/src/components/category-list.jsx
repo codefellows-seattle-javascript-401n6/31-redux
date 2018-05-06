@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import CategoryItem from './category-item.jsx';
-import { categoryCreate } from '../actions/category-actions';
+import { categoryCreate } from '../actions/category-actions.js';
 
 class CategoryList extends React.Components {
     constructor(props) {

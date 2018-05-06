@@ -3,7 +3,7 @@ import{connect} from 'react-redux';
 import {
     categoryUpdate,
     categoryDestroy,
-} from '..//actions/category-actions.js';
+} from '../actions/category-actions.js';
 
 import CategoryForm from './category-form.jsx';
 
