@@ -1,12 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {
-  create,
-  update,
-  // remove,
-} from '../actions/actions.jsx';
-
 import Category from './category.jsx';
 
 class CategoryList extends React.Component {
@@ -17,13 +11,11 @@ class CategoryList extends React.Component {
   }
 
   list() {
-    console.log('list() this.props.category= ', this.props.category);
-    return this.props.category.map((category, index) => {
+    return this.props.category.map(category => {
       return <Category 
         category={category}
-        // remove={this.props.remove}
-        update={this.props.update}
-        key={index} index={index}/>;
+        isEditing={category.isEditing}
+        key={category.id} id={category.id}/>;
     });
   }
 
@@ -31,6 +23,7 @@ class CategoryList extends React.Component {
     return <ul id="budget-list">
       {this.list()}
     </ul>;
+
   }
 }
 

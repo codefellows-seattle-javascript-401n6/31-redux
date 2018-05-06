@@ -4,12 +4,11 @@ import {connect} from 'react-redux';
 import {
   create,
   update,
-  // remove,
+  remove,
 } from '../actions/actions.jsx';
 
 import CategoryForm from './categoryForm.jsx';
 import CategoryList from './categoryList.jsx';
-import CategoryUpdateForm from './categoryUpdateForm.jsx';
 
 class CategoryPage extends React.Component {
   constructor(props) {
@@ -17,10 +16,7 @@ class CategoryPage extends React.Component {
 
     this.state = {
       appName: 'Budget Tracker',
-      category: [{
-        catName: 'Food',
-        budget: '50',
-      }]
+      category: [{}]
     };
   }
 
@@ -28,7 +24,7 @@ class CategoryPage extends React.Component {
     return <div>
       <h1>{this.state.appName}</h1>
       <div>
-        <CategoryForm />
+        <CategoryForm name="create"/>
         <CategoryList />
       </div>
     </div>;
@@ -42,8 +38,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     create: () => dispatch(create()),
-    update: values => dispatch(update(values)),
-    // remove: id => dispatch(remove(id)),
+    update: category => dispatch(update(category)),
+    remove: id => dispatch(remove(id)),
   };
 };
 

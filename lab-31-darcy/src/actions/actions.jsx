@@ -3,16 +3,13 @@ export const UPDATE = 'UPDATE';
 export const REMOVE = 'REMOVE';
 
 export function create(category) {
-  return {
-    type: CREATE, 
-    category: category
-  };
+  return {type: CREATE, category};
 }
 
-// export function update(value) {
-//   return {type: UPDATE, value};
-// }
+export function update(category) {
+  return {type: UPDATE, category};
+}
 
-// export function remove(id) {
-//   return {type: REMOVE, id};
-// }
+export function remove(id) {
+  return {type: REMOVE, id};
+}
