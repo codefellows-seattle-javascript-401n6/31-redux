@@ -47,6 +47,7 @@ class CategoryForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+            <h3>Enter a new Budget Item</h3>
                 <input onChange={this.handleNameChange} type="text" placeholder="category name" required="true"/>
                 <input onChange={this.handleBudgetChange} name="budget" type="text" placeholder="budget" required="true"/>
                 <button type="submit">Submit</button>

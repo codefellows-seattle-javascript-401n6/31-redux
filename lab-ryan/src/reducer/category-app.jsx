@@ -2,7 +2,6 @@ import {
     CATEGORY_CREATE,
     CATEGORY_UPDATE,
     CATEGORY_DESTROY,
-    categoryDestoy,
 } from '../actions/category-actions.js';
 import uuidv1 from 'uuid/v1';
 
@@ -40,10 +39,10 @@ export default function categoryReducer(state, action) {
         
         case CATEGORY_DESTROY:
             currentCategories = state.categories.slice();
-            let categoryDestroy = currentCategories.find(category => {
+            let categoryToRemove = currentCategories.find(category => {
                 return category.id === action.id;
             });
-            categoryIndex = currentCategories.indexOf(categoryDestoy);
+            categoryIndex = currentCategories.indexOf(categoryToRemove);
             currentCategories.splice(categoryIndex, 1);
             return Object.assign(newState, state, {categories: currentCategories});
     }
