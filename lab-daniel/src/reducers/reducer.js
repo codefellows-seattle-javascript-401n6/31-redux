@@ -1,32 +1,37 @@
-import uuid from 'uuid/v4'
+import uuidv4 from 'uuid/v4'
+import { CATEGORY_CREATE } from '../actions/action.js'
 
-
-import {
-    CATEGORY_CREATE
-} from '../actions/action.js'
 
 const initialState = {
-    app: 'Budget App',
+    appHeader: 'Budget App',
     categories: [
         {
-            id: uuid(),
-            timestamp = new Date(),
+            id: `${uuidv4()}`,
+            timestamp: `${new Date()}`,
             name: '',
             budget: 0
         }
     ]
 };
 
-export default function reducer(state, action){
-    if(state === undefined) {
-        return State;
+export default function appReducer(state, action) {
+    if (state === undefined) {
+        return initialState;
     }
-}
+    let newState = {};
+    let newCategories;
 
-let newState = {};
-let newCategory;
-
-switch(action.type) {
-    case CATEGORY_CREATE:
-    
+    switch (action.type) {
+        case CATEGORY_CREATE:
+            let newCategory = {
+                id: `${uuidv4()}`,
+                timestamp: `${new Date()}`,
+                name: action.data.name,
+                budget: `${parseFloat(action.data.budget)}`
+            }
+            newCategories = state.categories.slice();
+            Object.assign(newState, state, {categories: newCategories});
+            return newState;
+            console.log(newState)
+    }
 }

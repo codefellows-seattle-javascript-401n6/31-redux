@@ -1,20 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-class Root extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            header: "Budget App"
-        }
-    }
-    render(){
-        return(
-            <h1>{this.state.header}</h1>
-        )
-    }
-}
-let root = document.getElementById('root');
-ReactDOM.render(<Root />, root);
+let root = document.createElement('div');
+document.body.appendChild(root);
 
-export default Root;s
+ReactDOM.render(<App />, root);
