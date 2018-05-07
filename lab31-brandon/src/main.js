@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import App from './components/app.jsx';
 
 let root = document.createElement('div');
