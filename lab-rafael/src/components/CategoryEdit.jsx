@@ -5,6 +5,7 @@ class CategoryEdit extends React.Component {
     super(props);
     this.state = {
       title: this.props.title,
+      title: this.props.number,
       id: this.props.id
     }
 
@@ -29,6 +30,7 @@ class CategoryEdit extends React.Component {
   render() {
     return <form onSubmit={this.handleSubmit}>
       <input type="text" onChange={this.handleChange} value={this.state.title} id="title"></input>
+      <input type="number" onChange={this.handleChange} value={this.state.number} id="title"></input>
       <button onClick={this.cancel}>Cancel</button>
       <button type="submit">Save</button>
     </form>

@@ -13,11 +13,15 @@ const rootReducer = (state = initialState, action) => {
   let categories = [];
 
   switch(action.type) {
+
     case CATEGORY_CREATE:
+      console.log(action.payload);
       return { ...state, categories: state.categories.concat(action.payload) };
+
     case CATEGORY_DESTROY:
       categories = state.categories.filter(category => category.id !== action.payload);
       return { categories };
+
     case CATEGORY_UPDATE:
       categories = state.categories.map(category => {
         if(category.id === action.payload.id) {
@@ -26,6 +30,7 @@ const rootReducer = (state = initialState, action) => {
         return category;
       });
       return { ...state, categories };
+
     default:
       return state;
   }
