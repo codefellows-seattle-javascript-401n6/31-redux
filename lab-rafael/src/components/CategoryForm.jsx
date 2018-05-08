@@ -13,7 +13,8 @@ class ConnectedForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: ''
+      title: '',
+      number: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,14 +27,15 @@ class ConnectedForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { title } = this.state;
+    const { title, number } = this.state;
     const id = uuidv1();
-    this.props.createCategory({ title, id });
-    this.setState({ title: ''});
+    const timestamp = Date.now();
+    this.props.createCategory({ title, number, id, timestamp });
+    this.setState({ title: '', number: 0 });
   }
 
   render() {
-    const { title } = this.state;
+    const { title, number } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -43,6 +45,13 @@ class ConnectedForm extends React.Component {
             type='text'
             id='title'
             value={title}
+            onChange={this.handleChange}
+          />
+        <label htmlFor='number'>Budget</label>
+          <input
+            type='number'
+            id='number'
+            value={number}
             onChange={this.handleChange}
           />
         </div>

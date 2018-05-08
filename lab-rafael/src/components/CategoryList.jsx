@@ -39,6 +39,7 @@ class ConnectedList extends React.Component {
       <ul className='list-group'>
         {categories.map(category => {
           return <CategoryItem title={category.title}
+            number={category.number}
             id={category.id}
             destroyCategory={this.handleDestroy}
             updateCategory={this.handleUpdate}

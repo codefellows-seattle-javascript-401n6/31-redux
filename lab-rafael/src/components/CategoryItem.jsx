@@ -35,11 +35,13 @@ class CategoryItem extends React.Component {
           toggleEdit={this.toggleEdit}
           finishEdit={this.finishEdit}
           title={this.props.title}
+          number={this.props.number}
           id={this.props.id}
         />
     }
     return <li className='list-item'>
         {this.props.title}
+        {this.props.number}
         <button onClick={this.handleDestroy}>delete</button>
         <button onClick={this.toggleEdit}>Update</button>
       </li>
