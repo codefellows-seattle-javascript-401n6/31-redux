@@ -10,6 +10,6 @@ export function update(category) {
   return {type: UPDATE, category};
 }
 
-export function remove(id) {
-  return {type: REMOVE, id};
+export function remove(category) {
+  return {type: REMOVE, category};
 }

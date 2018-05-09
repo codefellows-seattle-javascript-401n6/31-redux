@@ -1,10 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
+import { connect } from 'react-redux';
 import {
   create,
   update,
-  remove,
+  remove
 } from '../actions/actions.jsx';
 
 import CategoryForm from './categoryForm.jsx';
@@ -24,22 +23,31 @@ class CategoryPage extends React.Component {
     return <div>
       <h1>{this.state.appName}</h1>
       <div>
-        <CategoryForm name="create"/>
-        <CategoryList />
+        <CategoryForm create={this.props.create}/>
+        <ul>
+          {this.props.categories.map(cat => {
+            return <CategoryList
+              key={cat.id}
+              category={cat}
+              update={this.props.update}
+              delete={this.props.remove} />;
+          })}
+          {/* <Category??? /> */}
+        </ul>
       </div>
     </div>;
   }
 }
 
-const mapStateToProps = state => ({
-  category: state.category,
+const mapStateToProps = (state) => ({
+  categories: state.categories,
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, getState) => {
   return {
-    create: () => dispatch(create()),
-    update: category => dispatch(update(category)),
-    remove: id => dispatch(remove(id)),
+    create: (category) => dispatch(create(category)),
+    update: (category) => dispatch(update(category)),
+    remove: (category) => dispatch(remove(category)),
   };
 };
 

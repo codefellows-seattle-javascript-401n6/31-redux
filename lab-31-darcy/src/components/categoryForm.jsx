@@ -1,58 +1,42 @@
 import React from 'react';
-import {connect} from 'react-redux';
-
-import {
-  create,
-  update,
-  remove,
-} from '../actions/actions.jsx';
+import uuid from 'uuid';
 
 class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      catName: '',
+      name: '',
       budget: '',
-      date: new Date(),
-      isEditing: false,
     };
-    // this.updateCatName = this.updateCatName.bind(this);
-    // this.updateBudget = this.updateBudget.bind(this);
     this.submit = this.submit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
-
-  // updateCatName(event) {
-  //   this.setState({title: event.target.value});
-  // }
-
-  // updateBudget(event) {
-  //   this.setState({content: event.target.value});
-  // }
 
   submit(event) {
     event.preventDefault();
-    if (this.props.name === 'create') {
-      this.props.create(this.state);
-    }
-    if (this.props.name === 'update') {
-      let newValue = Object.assign(this.state, {isEditing: false, id: this.props.id});
-      this.props.update(this.state);
-    }
+    this.props.create({
+      id: uuid(),
+      timestamp: new Date(),
+      name: this.state.name,
+      budget: this.state.budget
+    });
   }
 
-  handleChange(event) {
-    this.setState ({[event.target.name]: event.target.value});
+  onChange(event) {
+    event.preventDefault();
+    this.setState ({
+      [event.target.name]: event.target.value
+    });
   }
 
   render() {
     return <form id="add-cat" onSubmit={this.submit}>
       <input 
         type="text" 
-        name="catName" 
-        value={this.state.catName}
+        name="name"
+        value={this.state.name}
         placeholder="Category"
-        onChange={this.handleChange}
+        onChange={this.onChange}
       />
       
       <input 
@@ -60,7 +44,7 @@ class CategoryForm extends React.Component {
         name="budget" 
         value={this.state.budget}
         placeholder="Budget"
-        onChange={this.handleChange}
+        onChange={this.onChange}
       />
       
       <button type="submit"> Add Category </button>
@@ -68,16 +52,5 @@ class CategoryForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  category: state.category
-});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    create: category => dispatch(create(category)),
-    update: category => dispatch(update(category)),
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryForm);
+export default CategoryForm;

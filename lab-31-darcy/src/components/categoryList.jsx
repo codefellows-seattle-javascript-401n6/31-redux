@@ -11,7 +11,7 @@ class CategoryList extends React.Component {
   }
 
   list() {
-    return this.props.category.map(category => {
+    return this.props.categories.map(category => {
       return <Category 
         category={category}
         isEditing={category.isEditing}
@@ -20,15 +20,15 @@ class CategoryList extends React.Component {
   }
 
   render() {
-    return <ul id="budget-list">
+    return <li id="budget-list">
       {this.list()}
-    </ul>;
+    </li>;
 
   }
 }
 
 const mapStateToProps = state => ({
-  category: state.category,
+  categories: state.categories,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -4,10 +4,8 @@ import {
   REMOVE,
 } from '../actions/actions.jsx';
 
-import uuid from 'uuid';
-
 const initialState = {
-  category: []
+  categories: []
 };
 
 export default function budgetReducer(state, action) {
@@ -16,44 +14,33 @@ export default function budgetReducer(state, action) {
   }
 
   let newState = {};
-  let currentCatList;
-  let catIndex;
-  let newList;
-  let catUpdate;
-  let catRemove;
+  let newCats = [];
+  let updatedCategories;
 
   switch (action.type) {
+  
   case CREATE:
-    action.category.id = uuid();
-    action.category.date = new Date();
-
-    newList = [...state.category, action.category];
-    newState = Object.assign(newState, state, { category: newList });
-    return newState;
+    return Object.assign(newState, {
+      categories: [...state.categories, action.category] 
+    });
 
   case UPDATE:
-    currentCatList = state.category.slice();
-    catUpdate = currentCatList.find(category => {
-      return category.id === action.category.id;
+    updatedCategories = state.categories.map(cat => {
+      if (cat.id === action.category.id) {
+        return action.category;
+      } else {
+        return cat;
+      }
     });
-    catIndex = currentCatList.indexOf(catUpdate);
-    currentCatList[catIndex].isEditing = !currentCatList[catIndex].isEditing;
-    if (action.category.catName) {
-      currentCatList[catIndex].catName = action.category.catName;
-    }
-    if (action.category.budget) {
-      currentCatList[catIndex].budget = action.category.budget;
-    }
-    return Object.assign(newState, state, { category: currentCatList });
+    return Object.assign(newState, {
+      categories: updatedCategories
+    });
 
   case REMOVE:
-    currentCatList = state.category.slice();
-    catRemove = currentCatList.find(category => {
-      return category.id === action.id;
+    newCats = state.categories.filter(cat => cat.id !== action.category.id);
+    return Object.assign(newState, { 
+      categories: newCats 
     });
-    catIndex = currentCatList.indexOf(catRemove);
-    currentCatList.splice(catIndex, 1);
-    return Object.assign(newState, state, { category: currentCatList });
   
   default: return state;
   }

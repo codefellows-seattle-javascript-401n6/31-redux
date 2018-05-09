@@ -37,7 +37,7 @@ class Category extends React.Component {
   render() {
     if (this.state.isEditing) {
       return <CategoryUpdateForm 
-        catName={this.props.category.catName}
+        name={this.props.category.name}
         budget={this.props.category.budget}
         finishUpdate={this.finishUpdate}
         toggleUpdate={this.toggleUpdate} />;
@@ -46,13 +46,14 @@ class Category extends React.Component {
       <ul id="budget-item">
         <li id="list-catName">
           <Link to={'/' + this.props.category}>
-            {this.props.category.catName + ':' }
+            {this.props.category.name + ':' }
+            {this.props.category.budget}
           </Link>
         </li>
       </ul>
-      <ul>
-        <li id="list-budget"> {this.props.category.budget} </li>
-      </ul>
+      {/* <ul>
+        <li id="list-budget">  </li>
+      </ul> */}
       <button id="remove" onClick={this.remove}> Remove </button>
       <button onClick={this.toggleUpdate}> Update </button>
     </div>;
