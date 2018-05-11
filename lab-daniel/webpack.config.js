@@ -1,13 +1,12 @@
-‘use strict’;
+const HtmlPlugin = require('html-webpack-plugin')
+const path = require('path');
 
-const HtmlPlugin = require(‘html-webpack-plugin’)
-const path = require(‘path’);
 module.exports = {
- mode: ‘development’,
+ mode: 'development',
  entry: `${__dirname}/src/main.js`,
  plugins: [new HtmlPlugin()],
  devServer: {
- contentBase: path.join(__dirname, “dist”),
+ contentBase: path.join(__dirname, 'dist'),
  compress: true,
  port: 9000
 },
@@ -16,11 +15,11 @@ module.exports = {
      {
        test: /\.js$/,
        exclude: /node_modules/,
-       loader: ‘babel-loader’,
+       loader: 'babel-loader',
      },
      {
        test: /\.scss$/,
-       loader: [‘style-loader’, ‘css-loader’, ‘sass-loader’],
+       loader: ['style-loader', 'css-loader', 'sass-loader'],
      },
    ]
  }
