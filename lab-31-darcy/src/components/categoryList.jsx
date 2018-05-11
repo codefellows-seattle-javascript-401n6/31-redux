@@ -3,38 +3,45 @@ import {connect} from 'react-redux';
 
 import Category from './category.jsx';
 
+import {
+  create,
+} from '../actions/actions.jsx';
+
 class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.list = this.list.bind(this);
+    this.displayAll = this.displayAll.bind(this);
   }
 
-  list() {
+  displayAll() {
     return this.props.categories.map(category => {
       return <Category 
-        category={category}
-        isEditing={category.isEditing}
-        key={category.id} id={category.id}/>;
+        key={category.id} 
+        id={category.id}
+        name={category.name}  
+        budget={category.budget}
+        isEditing={category.isEditing} />;
     });
   }
 
   render() {
-    return <li id="budget-list">
-      {this.list()}
-    </li>;
-
+    return (
+      <div id="budget-list">
+        {this.displayAll()}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
+  categories: state.categories
 });
-
-const mapDispatchToProps = (dispatch) => {
+  
+const mapDispatchToProps = (dispatch, getState) => {
   return {
-    create: category => dispatch(create(category)),
+    create: value => dispatch(create(value)),
   };
 };
-
+  
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);

@@ -1,63 +1,67 @@
 import React from 'react';
-
-import { Link } from 'react-router-dom';
-import CategoryUpdateForm from './categoryUpdateForm.jsx';
+import {connect} from 'react-redux';
 
 import {
-  create,
   update,
-  remove,
+  remove
 } from '../actions/actions.jsx';
+
+import CategoryForm from './categoryForm.jsx';
 
 class Category extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isEditing: false,
-    };
-    this.remove = this.remove.bind(this);
+
+    this.handleRemove = this.handleRemove.bind(this);
     this.toggleUpdate = this.toggleUpdate.bind(this);
-    this.finishUpdate = this.finishUpdate.bind(this);
+    this.toggleUpdateOff = this.toggleUpdateOff.bind(this);
   }
 
-  remove() {
-    console.log('removing', this.props.id);
-    this.props.remove(this.props.id);
+  handleRemove(event, id) {
+    console.log('removing', id);
+    event.preventDefault();
+    this.props.remove(id);
   }
 
-  toggleUpdate() {
-    this.setState({isEditing: !this.state.isEditing});
+  toggleUpdate(event, id) {
+    console.log('TOGGLE-UPDATE EVENT', event);
+    console.log('TOGGLE-UPDATE ID', id);
+    this.props.update({isEditing: true, id});
   }
 
-  finishUpdate(updatedItem) {
-    this.setState({isEditing: false});
-    this.props.update(updatedItem, this.props.id);
+  toggleUpdateOff(event, id) {
+    this.props.update({isEditing: false, id});
   }
 
   render() {
-    if (this.state.isEditing) {
-      return <CategoryUpdateForm 
-        name={this.props.category.name}
-        budget={this.props.category.budget}
-        finishUpdate={this.finishUpdate}
-        toggleUpdate={this.toggleUpdate} />;
+    if (this.props.isEditing === true) {
+      return ( 
+        <div>
+          <CategoryForm id={this.props.id} />
+          <button onClick={(event) => this.toggleUpdateOff(event, this.props.id)}> Cancel </button>
+        </div>
+      );
     }
-    return <div>
-      <ul id="budget-item">
-        <li id="list-catName">
-          <Link to={'/' + this.props.category}>
-            {this.props.category.name + ':' }
-            {this.props.category.budget}
-          </Link>
-        </li>
-      </ul>
-      {/* <ul>
-        <li id="list-budget">  </li>
-      </ul> */}
-      <button id="remove" onClick={this.remove}> Remove </button>
-      <button onClick={this.toggleUpdate}> Update </button>
-    </div>;
+    return (
+      <li>
+        {this.props.name}: ${this.props.budget}
+        <button onClick={(event) => this.handleRemove(event, this.props.id)}> Remove </button>
+        {/* <button onClick={(event) => this.toggleUpdate(event, this.props.id)}> Update </button> */}
+        <button onClick={this.toggleUpdate}> Update </button>
+      </li>
+    );
   }
 }
 
-export default Category;
+const mapStateToProps = state => ({
+  categories: state.categories
+});
+
+const mapDispatchToProps = (dispatch, getState) => {
+  return {
+    update: (value) => dispatch(update(value)),
+    remove: (id) => dispatch(remove(id)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
