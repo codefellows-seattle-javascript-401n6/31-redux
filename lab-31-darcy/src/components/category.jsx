@@ -14,30 +14,37 @@ class Category extends React.Component {
 
     this.handleRemove = this.handleRemove.bind(this);
     this.toggleUpdate = this.toggleUpdate.bind(this);
-    this.toggleUpdateOff = this.toggleUpdateOff.bind(this);
+    // this.toggleUpdateOff = this.toggleUpdateOff.bind(this);
   }
 
   handleRemove(event, id) {
-    console.log('removing', id);
     event.preventDefault();
-    this.props.remove(id);
+    this.props.remove(this.props.id);
   }
 
-  toggleUpdate(event, id) {
-    console.log('TOGGLE-UPDATE EVENT', event);
-    console.log('TOGGLE-UPDATE ID', id);
-    this.props.update({isEditing: true, id});
+  toggleUpdate() {
+    event.preventDefault();
+    this.props.update({
+      name: this.props.name,
+      budget: this.props.budget,
+      id: this.props.id,
+      isEditing: true,
+    });
   }
 
-  toggleUpdateOff(event, id) {
-    this.props.update({isEditing: false, id});
-  }
+  // toggleUpdateOff(event, id) {
+ 
+  // }
 
   render() {
     if (this.props.isEditing === true) {
       return ( 
         <div>
-          <CategoryForm id={this.props.id} />
+          <CategoryForm id={this.props.id} 
+            mode="update"
+            name={this.props.name} 
+            budget={this.props.budget} />
+
           <button onClick={(event) => this.toggleUpdateOff(event, this.props.id)}> Cancel </button>
         </div>
       );
@@ -45,17 +52,12 @@ class Category extends React.Component {
     return (
       <li>
         {this.props.name}: ${this.props.budget}
-        <button onClick={(event) => this.handleRemove(event, this.props.id)}> Remove </button>
-        {/* <button onClick={(event) => this.toggleUpdate(event, this.props.id)}> Update </button> */}
+        <button onClick={this.handleRemove}> Remove </button>
         <button onClick={this.toggleUpdate}> Update </button>
       </li>
     );
   }
 }
-
-const mapStateToProps = state => ({
-  categories: state.categories
-});
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
@@ -64,4 +66,4 @@ const mapDispatchToProps = (dispatch, getState) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category);
+export default connect(null, mapDispatchToProps)(Category);

@@ -10,9 +10,8 @@ class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.name,
-      budget: this.budget,
-      isEditing: false,
+      name: this.props.name,
+      budget: this.props.budget,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -22,12 +21,15 @@ class CategoryForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // let submitFormName = this.props.name;
-    if (this.props.name === 'create') {
+    if (this.props.mode === 'create') {
       this.props.create(this.state);
-    } else if (this.props.name === 'update') {
-      let newValue = Object.assign(this.state, { isEditing: false, id: this.props.id });
-      this.props.update(this.state);
+    } else if (this.props.mode === 'update') {
+      let newValue = Object.assign(this.state, { 
+        isEditing: false, 
+        name:this.state.name, 
+        budget:this.state.budget, 
+        id:this.props.id});
+      this.props.update(newValue);
     }
   }
 
@@ -45,9 +47,9 @@ class CategoryForm extends React.Component {
     this.setState(newState);
   }
 
-// handleChange(event) {
-//   this.setState({ [event.target.id]: event.target.value });
-// }
+  // handleChange(event) {
+  //   this.setState({ [event.target.id]: event.target.value });
+  // }
 
   render() {
     return <form id="add-cat" onSubmit={this.handleSubmit}>
@@ -57,6 +59,7 @@ class CategoryForm extends React.Component {
         type="text"
         placeholder="Category"
         required="true"
+        value={this.state.name}
       />
 
       <input
@@ -65,6 +68,7 @@ class CategoryForm extends React.Component {
         type="text"
         placeholder="Budget"
         required="true"
+        value={this.state.budget}
       />
 
       <button type="submit"> Add Category </button>
@@ -72,9 +76,11 @@ class CategoryForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories
-});
+const mapStateToProps = state => {
+  return {
+    categories: state.categories
+  };
+};
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {

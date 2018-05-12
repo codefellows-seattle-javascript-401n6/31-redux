@@ -34,10 +34,12 @@ class CategoryList extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories
-});
-  
+const mapStateToProps = state => {
+  return {
+    categories: state.categories
+  };
+};
+
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     create: value => dispatch(create(value)),

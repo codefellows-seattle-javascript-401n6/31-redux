@@ -15,7 +15,7 @@ class CategoryPage extends React.Component {
   render() {
     return <div>
       <h1>{this.state.appName}</h1>
-      <CategoryForm name='create' />
+      <CategoryForm mode='create' />
       <CategoryList />
     </div>;
   }

@@ -20,6 +20,7 @@ export default function budgetReducer(state = initialState, action) {
   let categoryIndex;
   let newCategory;
   let catRemove;
+  let toUpdate;
 
   switch (action.type) {
   
@@ -32,6 +33,9 @@ export default function budgetReducer(state = initialState, action) {
     return Object.assign(newState, state, {categories: currentCategories});
 
   case UPDATE:
+    console.log('UPDATE: ACTION (type,value)= ', action);
+    console.log('UPDATE: ACTION.CATEGORY.ID= ', action.category.id);
+
     currentCategories = state.categories.map(cat => {
       if (cat.id === action.category.id) {
         return action.category;
