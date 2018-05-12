@@ -1,5 +1,4 @@
 import React from 'react'
-
 import uuidv4 from 'uuid/v4'
 
 class CreateForm extends React.Component{
@@ -9,7 +8,7 @@ class CreateForm extends React.Component{
                 name: '',
                 budget: 0,
                 id: uuidv4(),
-                timestamp: null
+                timestamp: new Date()
             }
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -32,8 +31,8 @@ class CreateForm extends React.Component{
         return (
             <form onSubmit={this.submit}>
                 <h1>{this.state.header}</h1>
-                <input type="text" onChange={this.onChange} placeholder="name" />
-                <input type="number" name="budget" onChange={this.onChange} placeholder="budget" />
+                <input name="name" type="text" onChange={this.onChange} placeholder="name" />
+                <input  name="budget" type="number" onChange={this.onChange} placeholder="budget" />
                 <button> submit </button>
             </form> 
         )

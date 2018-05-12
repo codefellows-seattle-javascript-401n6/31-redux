@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { create } from '../actions/category-actions';
 import CategoryForm from './CategoryForm.js';
+import CategoryItem from './CategoryItem.js';
+import CategoryList from './CategoryList.js';
 
 class Dashboard extends React.Component {
     constructor(props){
@@ -12,6 +14,7 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <CategoryForm create={this.props.create}/>
+                <CategoryList />
             </div>
         )
     }

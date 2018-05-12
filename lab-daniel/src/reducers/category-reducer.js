@@ -1,5 +1,5 @@
 import {
-    CATEGORY_CREATE
+    CATEGORY_CREATE, CATEGORY_UPDATE
 } from '../actions/category-actions'
 
 const initialState = {
@@ -21,5 +21,16 @@ export default function categoryReducer(state, action) {
             return Object.assign(newState, {
                 categories: newCats
             });
+        
+        case CATEGORY_UPDATE:
+            let updatedCategories = state.categories.map(cat => {
+                if(cat.id === action.category.id) {
+                    return action.category
+                } else {
+                    return cat;
+                }
+            });
+        
+        case CATEGORY_DESTROY:
     }
 }
