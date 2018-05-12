@@ -10,19 +10,22 @@ class CategoryForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.name,
-      budget: this.props.budget,
+      name: '',
+      budget: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleBudgetChange = this.handleBudgetChange.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     if (this.props.mode === 'create') {
       this.props.create(this.state);
+      this.setState({
+        name: '',
+        budget: '',
+      });
     } else if (this.props.mode === 'update') {
       let newValue = Object.assign(this.state, { 
         isEditing: false, 
@@ -46,10 +49,6 @@ class CategoryForm extends React.Component {
     };
     this.setState(newState);
   }
-
-  // handleChange(event) {
-  //   this.setState({ [event.target.id]: event.target.value });
-  // }
 
   render() {
     return <form id="add-cat" onSubmit={this.handleSubmit}>

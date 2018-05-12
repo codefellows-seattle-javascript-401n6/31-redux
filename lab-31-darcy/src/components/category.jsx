@@ -14,6 +14,7 @@ class Category extends React.Component {
 
     this.handleRemove = this.handleRemove.bind(this);
     this.toggleUpdate = this.toggleUpdate.bind(this);
+    this.toggleUpdateOff = this.toggleUpdateOff.bind(this);
   }
 
   handleRemove(event, id) {
@@ -31,6 +32,16 @@ class Category extends React.Component {
     });
   }
 
+  toggleUpdateOff() {
+    event.preventDefault();
+    this.props.update({
+      isEditing: false,
+      name: this.props.name,
+      budget: this.props.budget,
+      id: this.props.id,
+    });
+
+  }
 
   render() {
     if (this.props.isEditing === true) {
@@ -40,8 +51,7 @@ class Category extends React.Component {
             mode="update"
             name={this.props.name} 
             budget={this.props.budget} />
-
-          <button onClick={(event) => this.toggleUpdateOff(event, this.props.id)}> Cancel </button>
+          <button id="cancel-button" onClick={this.toggleUpdateOff}> Cancel </button>
         </div>
       );
     }
