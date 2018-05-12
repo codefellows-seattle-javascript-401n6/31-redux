@@ -6,14 +6,13 @@ const initialState = {
     categories: []
 }
 
-export default function categoryReducer(state, actuon) {
+export default function categoryReducer(state, action) {
     if (state === undefined) {
         return initialState;
     }
     
     let newState = {}
     let newCategories = [];
-
     switch(action.type) {
         case CATEGORY_CREATE:
             return Object.assign(newState, {

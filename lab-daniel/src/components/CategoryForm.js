@@ -1,4 +1,5 @@
 import React from 'react'
+
 import uuidv4 from 'uuid/v4'
 
 class CreateForm extends React.Component{
@@ -41,5 +42,4 @@ class CreateForm extends React.Component{
         )
     }
 }
-
 export default CreateForm;
