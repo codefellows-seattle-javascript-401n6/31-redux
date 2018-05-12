@@ -4,6 +4,10 @@ import { create } from '../actions/category-actions';
 import CategoryForm from './CategoryForm.js';
 
 class Dashboard extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {};
+    }
     render() {
         return (
             <div>
