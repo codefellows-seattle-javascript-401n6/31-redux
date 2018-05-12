@@ -14,7 +14,6 @@ class Category extends React.Component {
 
     this.handleRemove = this.handleRemove.bind(this);
     this.toggleUpdate = this.toggleUpdate.bind(this);
-    // this.toggleUpdateOff = this.toggleUpdateOff.bind(this);
   }
 
   handleRemove(event, id) {
@@ -32,9 +31,6 @@ class Category extends React.Component {
     });
   }
 
-  // toggleUpdateOff(event, id) {
- 
-  // }
 
   render() {
     if (this.props.isEditing === true) {
@@ -61,7 +57,7 @@ class Category extends React.Component {
 
 const mapDispatchToProps = (dispatch, getState) => {
   return {
-    update: (value) => dispatch(update(value)),
+    update: (category) => dispatch(update(category)),
     remove: (id) => dispatch(remove(id)),
   };
 };
