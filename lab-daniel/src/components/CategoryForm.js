@@ -7,8 +7,6 @@ class CreateForm extends React.Component{
             this.state = {
                 name: '',
                 budget: 0,
-                id: uuidv4(),
-                timestamp: new Date()
             }
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -16,12 +14,12 @@ class CreateForm extends React.Component{
 
     submit(e) {
         e.preventDefault();
-        this.props.create(this.state)
-        console.log('New category: ', this.state)
+        const category = Object.assign({}, this.state, {id: uuidv4(), timestamp: new Date()})
+        this.props.create(category)
+        console.log('New category: ', category)
     }
 
     onChange(e) {
-        e.preventDefault();
         this.setState({
             [e.target.name] : e.target.value
         })
