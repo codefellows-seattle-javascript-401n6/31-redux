@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { create } from '../actions/category-actions';
+import { create, destroy } from '../actions/category-actions';
 import CategoryForm from './CategoryForm.js';
 import CategoryItem from './CategoryItem.js';
 import CategoryList from './CategoryList.js';
@@ -13,8 +13,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
+                <h1>Budget App</h1>
                 <CategoryForm create={this.props.create}/>
-                <CategoryList />
+                <CategoryList destroy={this.props.destroy}/>
             </div>
         )
     }
@@ -26,7 +27,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, getState) => {
     return {
-        create: (category) => dispatch(create(category))
+        create: (category) => dispatch(create(category)),
+        destroy: (id) => dispatch(destroy(id))
     }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { create } from '../actions/category-actions';
+import { create, destroy } from '../actions/category-actions';
 import CategoryItem from './CategoryItem.js'
 
 
@@ -20,7 +20,7 @@ class CategoryList extends React.Component {
     render() {
         return (
             <div>
-                <p id="Budget Header">Budget Item</p>
+                <h2 id="Budget Header">Bills</h2>
                 <ul>{this.catList()}</ul>
             </div>
 
@@ -34,7 +34,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, getState) => {
     return {
-        create: (category) => dispatch(create(category))
+        create: (category) => dispatch(create(category)),
+        destroy: (id) => dispatch(destroy(id))
     }
 }
 
