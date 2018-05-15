@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
             <div>
                 <h1>Budget App</h1>
                 <CategoryForm create={this.props.create}/>
-                <CategoryList destroy={this.props.destroy}/>
+                <CategoryList/>
             </div>
         )
     }

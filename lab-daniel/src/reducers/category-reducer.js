@@ -1,5 +1,7 @@
 import {
-    CATEGORY_CREATE, CATEGORY_UPDATE, CREATE_DESTROY
+    CATEGORY_CREATE,
+    CATEGORY_UPDATE, 
+    CATEGORY_DESTROY
 } from '../actions/category-actions'
 
 const initialState = {
@@ -16,6 +18,7 @@ export default function categoryReducer(state, action) {
     let currentCategories;
     let categoryIndex;
     switch (action.type) {
+
         case CATEGORY_CREATE:
             let newCats = state.categories.slice();
             newCats.push(action.category)
@@ -32,13 +35,15 @@ export default function categoryReducer(state, action) {
                 }
             });
 
-            case CATEGORY_DESTROY:
+        case CATEGORY_DESTROY:
             currentCategories = state.categories.slice();
-            let categoryToRemove = currentCategories.find(category => {
-                return category.id === action.id;
+            let removeCategories = currentCategories.find(cat => {
+                return cat.id === action.id;
             });
-            categoryIndex = currentCategories.indexOf(categoryToRemove);
+            categoryIndex = currentCategories.indexOf(removeCategories);
             currentCategories.splice(categoryIndex, 1);
-            return Object.assign(newState, state, {categories: currentCategories});
+            return Object.assign(newState, state, { categories: currentCategories });
+
+        default: return state;
     }
 }

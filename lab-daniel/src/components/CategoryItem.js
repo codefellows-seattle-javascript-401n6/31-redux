@@ -13,19 +13,19 @@ class CategoryItem extends React.Component {
 
     handleRemove(e) {
         e.preventDefault();
-        let remove = this.props.id
-        console.log(this.props.destroy(this.props.id))
+        let id = e.target.id;
+        console.log('ID:', id)
+        this.props.destroy(id)
     }
 
 
     render() {
         return(
-            <form onSubmit={this.handleRemove}>
+            <React.Fragment>
                 <h3>{this.props.name}</h3>
                 <h4>{this.props.budget}</h4>
-                <p>{this.props.timestamp}</p>
-                <button>Delete</button>
-            </form>
+                <button onClick={this.handleRemove}> Delete </button>
+            </React.Fragment>
         )
     }
 }
