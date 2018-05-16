@@ -1,10 +1,12 @@
 import React from 'react';
-import '../../style/main.css'; 
+import Dashboard from './Dashboard';
+import '../../style/main.css';
 
 class App extends React.Component {
   render() {
     return (
-    <div>
+      <div>
+      <Dashboard />
       <h1>Testing</h1>
     </div>
     )
