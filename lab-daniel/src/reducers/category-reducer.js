@@ -1,6 +1,6 @@
 import {
     CATEGORY_CREATE,
-    CATEGORY_UPDATE, 
+    CATEGORY_UPDATE,
     CATEGORY_DESTROY
 } from '../actions/category-actions'
 
@@ -15,8 +15,7 @@ export default function categoryReducer(state, action) {
 
     let newState = {}
     let newCats = [];
-    let currentCategories;
-    let categoryIndex;
+
     switch (action.type) {
 
         case CATEGORY_CREATE:
@@ -26,21 +25,21 @@ export default function categoryReducer(state, action) {
                 categories: newCats
             });
 
-        case CATEGORY_UPDATE:
-            let updatedCategories = state.categories.map(cat => {
-                if (cat.id === action.category.id) {
-                    return action.category
-                } else {
-                    return cat;
-                }
-            });
+        // case CATEGORY_UPDATE:
+        //     let updatedCategories = state.categories.map(cat => {
+        //         if (cat.id === action.cat.id) {
+        //             return action.category
+        //         } else {
+        //             return cat;
+        //         }
+        //     });
 
         case CATEGORY_DESTROY:
-            currentCategories = state.categories.slice();
-            let removeCategories = currentCategories.find(cat => {
-                return cat.id === action.id;
+            let currentCategories = state.categories.slice();
+            let categoryToRemove = currentCategories.find(category => {
+                return category.id === action.id;
             });
-            categoryIndex = currentCategories.indexOf(removeCategories);
+            let categoryIndex = currentCategories.indexOf(categoryToRemove);
             currentCategories.splice(categoryIndex, 1);
             return Object.assign(newState, state, { categories: currentCategories });
 
