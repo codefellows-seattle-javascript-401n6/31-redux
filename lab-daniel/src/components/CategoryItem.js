@@ -32,17 +32,17 @@ class CategoryItem extends React.Component {
         console.log('Cancel isEditing')
 
     }
-    handleEdit(e, id) {
+    handleEdit(e) {
         e.preventDefault();
         this.toggleEdit();
-        // this.props.update(id);
     }
+
     render() {
         const categoryId = this.props.id;
         if (this.state.isEditing != false) {
             return (
-                <div>
-                    <CategoryForm id={this.props.id} name="update"></CategoryForm>
+                <div onSubmit={this.props.handleEdit}>
+                    <CategoryForm name="update"></CategoryForm>
                     <button onClick={this.cancelEdit}>Cancel</button>
                 </div>
             )
@@ -56,7 +56,6 @@ class CategoryItem extends React.Component {
                         <button className="remove" onClick={this.handleRemove}>Remove</button>
                         <button className="edit" onClick={this.handleEdit}>Edit</button>
                     </div>
-                    {'' + this.state.isEditing}
                 </form>
             )
         }

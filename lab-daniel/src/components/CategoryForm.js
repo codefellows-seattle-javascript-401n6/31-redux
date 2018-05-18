@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { create, destroy, update } from '../actions/category-actions';
 import uuidv4 from 'uuid/v4'
 
 class CreateForm extends React.Component{
@@ -36,4 +38,16 @@ class CreateForm extends React.Component{
         )
     }
 }
-export default CreateForm;
+const mapStateToProps = state => ({
+    categories: state.categories
+});
+
+const mapDispatchToProps = (dispatch, getState) => {
+    return {
+        create: (category) => dispatch(create(category)),
+        destroy: (id) => dispatch(destroy(id)),
+        update: values => dispatch(update(values))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
