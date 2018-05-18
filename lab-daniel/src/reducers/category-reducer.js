@@ -15,6 +15,11 @@ export default function categoryReducer(state, action) {
 
     let newState = {}
     let newCats = [];
+    let currentCategories;
+    let updateCategories;
+    let categoryIndex;
+    let categoryToRemove;
+
 
     switch (action.type) {
 
@@ -25,17 +30,10 @@ export default function categoryReducer(state, action) {
                 categories: newCats
             });
 
-        // case CATEGORY_UPDATE:
-        //     let updatedCategories = state.categories.map(cat => {
-        //         if (cat.id === action.cat.id) {
-        //             return action.category
-        //         } else {
-        //             return cat;
-        //         }
-        //     });
+
         case CATEGORY_UPDATE:
             currentCategories = state.categories.slice();
-            let updateCategories = currentCategories.find(category => {
+            updateCategories = currentCategories.find(category => {
                 return category.id === action.value.id;
             });
             categoryIndex = currentCategories.indexOf(updateCategories);
@@ -47,11 +45,11 @@ export default function categoryReducer(state, action) {
 
 
         case CATEGORY_DESTROY:
-            let currentCategories = state.categories.slice();
-            let categoryToRemove = currentCategories.find(category => {
+            currentCategories = state.categories.slice();
+            categoryToRemove = currentCategories.find(category => {
                 return category.id === action.id;
             });
-            let categoryIndex = currentCategories.indexOf(categoryToRemove);
+            categoryIndex = currentCategories.indexOf(categoryToRemove);
             currentCategories.splice(categoryIndex, 1);
             return Object.assign(newState, state, { categories: currentCategories });
 

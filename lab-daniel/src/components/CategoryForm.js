@@ -7,6 +7,7 @@ class CreateForm extends React.Component{
             this.state = {
                 name: '',
                 budget: 0,
+                isEditing: false
             }
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
