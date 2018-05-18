@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CategoryForm from './CategoryForm'
-import { create, destroy } from '../actions/category-actions'
+import { create, destroy, update } from '../actions/category-actions'
 
 
 class CategoryItem extends React.Component {
@@ -28,16 +28,27 @@ class CategoryItem extends React.Component {
     
     handleEdit(e) {
         e.preventDefault();
-        console.log('clicked')
         this.toggleEdit();
+        console.log((this.state.isEditing != true))
     }
     render() {
+        const categoryId = this.props.id;
+        if(this.state.isEditing != false) {
+            return (
+                <div>
+                    <CategoryForm id={this.props.id} name="update"></CategoryForm>
+                    <button onClick={(event)=>this.toggleEditOff(event, categoryId)}>Cancel</button>
+                </div>
+            )
+        }
         return(
-            <form>
-                <h3>{this.props.name}</h3>
-                <h4>{this.props.budget}</h4>
-                <button onClick={this.handleRemove}>Remove</button>
-                <button onClick={this.handleEdit}>Edit</button>
+            <form className="bills">
+                <h3>Name: {this.props.name}</h3>
+                <h3>Cost: ${this.props.budget}</h3>
+                <div id="item-buttons">
+                <button className="remove" onClick={this.handleRemove}>Remove</button>
+                <button className="edit"  onClick={this.handleEdit}>Edit</button>
+                </div>
                 {'' + this.state.isEditing}
             </form>
         )
@@ -51,7 +62,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
     return {
         create: (category) => dispatch(create(category)),
-        destroy: (id) => dispatch(destroy(id))
+        destroy: (id) => dispatch(destroy(id)),
+        update: values => dispatch(update(values))
     }
 }
 

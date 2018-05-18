@@ -33,6 +33,18 @@ export default function categoryReducer(state, action) {
         //             return cat;
         //         }
         //     });
+        case CATEGORY_UPDATE:
+            currentCategories = state.categories.slice();
+            let updateCategories = currentCategories.find(category => {
+                return category.id === action.value.id;
+            });
+            categoryIndex = currentCategories.indexOf(updateCategories);
+            currentCategories[categoryIndex].isEditing = !currentCategories[categoryIndex].isEditing;
+            if (action.value.name) {
+                currentCategories[categoryIndex].budget = action.value.budget;
+            }
+            return Object.assign(newState, state, { categories: currentCategories });
+
 
         case CATEGORY_DESTROY:
             let currentCategories = state.categories.slice();

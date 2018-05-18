@@ -27,7 +27,7 @@ class CategoryList extends React.Component {
     render() {
         return (
             <div>
-                <h2 id="Budget Header">Bills</h2>
+                <h2 id="budget-header">Bills</h2>
                 <ul>
                     <li>{this.catList()}</li>
                 </ul>

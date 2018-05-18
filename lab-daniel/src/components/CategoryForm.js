@@ -28,9 +28,9 @@ class CreateForm extends React.Component{
     render(){
         return (
             <form onSubmit={this.submit}>
-                <input name="name" type="text" onChange={this.onChange} placeholder="name" />
-                <input  name="budget" type="number" onChange={this.onChange} placeholder="budget" />
-                <button> submit </button>
+                <input id="name" name="name" type="text" onChange={this.onChange} placeholder="name" />
+                <input  id="budget" name="budget" type="number" onChange={this.onChange} placeholder="budget" />
+                <button id="submit"> SUBMIT </button>
             </form> 
         )
     }
