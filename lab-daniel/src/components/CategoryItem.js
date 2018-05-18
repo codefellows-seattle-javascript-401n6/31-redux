@@ -30,7 +30,6 @@ class CategoryItem extends React.Component {
         e.preventDefault();
         this.setState({ isEditing: false});
         console.log('Cancel isEditing')
-
     }
     handleEdit(e) {
         e.preventDefault();
@@ -41,7 +40,7 @@ class CategoryItem extends React.Component {
         const categoryId = this.props.id;
         if (this.state.isEditing != false) {
             return (
-                <div onSubmit={this.props.handleEdit}>
+                <div onSubmit={this.handleEdit}>
                     <CategoryForm name="update"></CategoryForm>
                     <button onClick={this.cancelEdit}>Cancel</button>
                 </div>
