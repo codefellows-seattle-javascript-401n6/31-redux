@@ -20,42 +20,43 @@ export default function categoryReducer(state, action) {
     let categoryIndex;
     let categoryToRemove;
 
-
+    console.log('Action.type', action.type)
     switch (action.type) {
-
         case CATEGORY_CREATE:
-            let newCats = state.categories.slice();
+            let newCats = state.categories.map(ele => {
+                return ele;
+            });
             newCats.push(action.category)
+            console.log('NEW CATS', newCats)
             return Object.assign(newState, {
                 categories: newCats
             });
 
 
         case CATEGORY_UPDATE:
-            currentCategories = state.categories.slice();
-            updateCategories = currentCategories.find(category => {
-                return category.id === action.value.id;
-            });
-            categoryIndex = currentCategories.indexOf(updateCategories);
-            currentCategories[categoryIndex].isEditing = !currentCategories[categoryIndex].isEditing;
-            if (action.value.name) {
-                currentCategories[categoryIndex].budget = action.value.budget;
-            }
-            return Object.assign(newState, state, { categories: currentCategories });
+            let newObject = {};
+            currentCategories = state.categories.map(ele => {
+                if(ele.id ===  action.category.id) {
+                    ele.isEditing = !ele.isEditing;
+                    ele.name = action.category.name;
+                    ele.budget = action.category.budget;
+                    console.log('ENTERING REDUCER IF')
+                }
+                return ele;
+            })
+            // console.log('Current Cat', currentCategories)
+            let newObj = Object.assign(newObject, state, { categories: currentCategories });
+            // console.log('TEMP OBJ', tempObj)
+            return newObj
 
 
         case CATEGORY_DESTROY:
-            console.log('action', action)
-            // currentCategories = state.categories.slice();
-            // categoryToRemove = currentCategories.find(category => {
-            //     return category.id === action.id;
-            // });
-            console.log('current cats', currentCategories)
-            let currentCategories = state.categories.filter(ele => {
+            console.log('In destroy!', action)
+
+            currentCategories = state.categories.filter(ele => {
                 return ele.id !== action.id
+                console.log('DELETED ACTION', action.id)
             })
-            // categoryIndex = currentCategories.indexOf(categoryToRemove);
-            // currentCategories.splice(categoryIndex, 1);
             return Object.assign(newState, state, { categories: currentCategories });
 
         default: return state;

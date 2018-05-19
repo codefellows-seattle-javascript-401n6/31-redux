@@ -58,3 +58,21 @@ li{
     border: 1px solid rgb(249, 249, 0);
     width: 5em;
 }
+.handleEdit{
+    border: 1px solid rgb(255, 0, 0);
+    background-color: rgb(207, 228, 217);
+    box-shadow: 5px 10px #d5d5d5;
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 3em;
+    padding: 5em;
+    width: 35em;
+}
+#close-edit{
+    margin-top: 1.5em;
+    border: 2px solid rgb(0, 60, 255);
+    width: 15em;
+    height: 3em;
+    font-weight: bold;
+}

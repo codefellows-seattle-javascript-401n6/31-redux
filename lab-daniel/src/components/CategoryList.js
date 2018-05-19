@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { create, destroy } from '../actions/category-actions';
+import { create, destroy, update } from '../actions/category-actions';
+
 import CategoryItem from './CategoryItem.js'
 
 
@@ -8,20 +9,24 @@ import CategoryItem from './CategoryItem.js'
 class CategoryList extends React.Component {
     constructor(props) {
         super(props);
-        
-        this.catList = this.catList.bind(this);    }
-    
+
+        this.catList = this.catList.bind(this);
+    }
+
 
     catList() {
         return this.props.categories.map((cat, i) => {
-            return <CategoryItem cat={cat} 
-                                key={i} 
-                                id={cat.id} 
-                                name={cat.name} 
-                                budget={cat.budget}
-                                destroy={this.props.handleRemove}>
-                    </CategoryItem>
-          });
+            // console.log('CAT ', cat)
+            // console.log('this.props.category', this.props.categories)
+            return <CategoryItem cat={cat}
+                key={i}
+                id={cat.id}
+                name={cat.name}
+                budget={cat.budget}
+                update={this.props.update}
+                destroy={this.props.destroy}>
+            </CategoryItem>
+        });
     }
 
     render() {
@@ -44,6 +49,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
     return {
         create: (category) => dispatch(create(category)),
+        update: (category) => dispatch(update(category)),
         destroy: (id) => dispatch(destroy(id))
     }
 }

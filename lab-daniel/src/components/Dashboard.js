@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { create, destroy, update } from '../actions/category-actions';
+
 import CategoryForm from './CategoryForm.js';
 import CategoryItem from './CategoryItem.js';
 import CategoryList from './CategoryList.js';
@@ -15,7 +16,7 @@ class Dashboard extends React.Component {
             <div>
                 <h1>Budget App</h1>
                 <CategoryForm create={this.props.create}/>
-                <CategoryList destroy={this.props.removeGoal}/>
+                <CategoryList destroy={this.props.destroy} update={this.props.update}/>
             </div>
         )
     }
