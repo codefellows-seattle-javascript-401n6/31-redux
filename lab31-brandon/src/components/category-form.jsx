@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react'
 import uuidv4 from 'uuid/v4';
 
@@ -9,15 +7,13 @@ class CategoryForm extends React.Component {
         this.state = {
             name: '',
             budget: 0, 
-            id: uuidv4(),
-            timestamp: null
         }
-        this.onChange = this.onChange.bind();
-        this.onSubmit = this.onSubmit.bind();
-
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange(ev) {
+        ev.preventDefault();
         this.setState({
             [ev.target.name]: ev.target.value
         })
@@ -26,16 +22,27 @@ class CategoryForm extends React.Component {
 
     onSubmit(ev) {
         ev.preventDefault();
-        this.props.create(this.state);
+        this.props.create({
+            id: uuidv4(),
+            timestamp: new Date(),
+            name:this.state.name,
+            budget: this.state.budget
+        })
     }
 
-
     render() {
-        return 
-    <form> 
-        <input name='name' onChange={this.onChange} placeholder='name'></input>
-        <input name='budget' onChange={this.onChange} placeholder='budget' type='number'></input>
-        <button>create</button>
+        return <form onSubmit={this.submit}> 
+        <input type='text' 
+               name='name' 
+               onChange={this.onChange}
+               value={this.state.name}
+               placeholder='name'></input>
+        <input type='number'
+               name='budget' 
+               onChange={this.onChange}
+               value={this.state.budget}
+               placeholder='budget'></input>
+        <button>Submit</button>
     </form>
     }
 }

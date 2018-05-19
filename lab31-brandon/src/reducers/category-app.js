@@ -16,6 +16,7 @@ export default function categoryReducer (state, action) {
     let newCategory = [];
     
     switch (action.type) {
+        
         case CATEGORY_CREATE:
             return Object.assign(newState, {
                 categories: [...state.categories, action.category]
