@@ -19,7 +19,7 @@ class CategoryItem extends React.Component {
     }
     handleRemove(e) {
         e.preventDefault();
-        let id = e.target.id;
+        let id = this.props.id;
         this.props.destroy(id);
     }
 

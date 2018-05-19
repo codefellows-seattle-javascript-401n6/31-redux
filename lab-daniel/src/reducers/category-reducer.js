@@ -45,12 +45,17 @@ export default function categoryReducer(state, action) {
 
 
         case CATEGORY_DESTROY:
-            currentCategories = state.categories.slice();
-            categoryToRemove = currentCategories.find(category => {
-                return category.id === action.id;
-            });
-            categoryIndex = currentCategories.indexOf(categoryToRemove);
-            currentCategories.splice(categoryIndex, 1);
+            console.log('action', action)
+            // currentCategories = state.categories.slice();
+            // categoryToRemove = currentCategories.find(category => {
+            //     return category.id === action.id;
+            // });
+            console.log('current cats', currentCategories)
+            let currentCategories = state.categories.filter(ele => {
+                return ele.id !== action.id
+            })
+            // categoryIndex = currentCategories.indexOf(categoryToRemove);
+            // currentCategories.splice(categoryIndex, 1);
             return Object.assign(newState, state, { categories: currentCategories });
 
         default: return state;

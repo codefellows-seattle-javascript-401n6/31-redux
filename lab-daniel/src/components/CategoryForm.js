@@ -39,7 +39,7 @@ class CreateForm extends React.Component{
             <form onSubmit={this.editSubmit}>
                 <input id="name" name="name" type="text" onChange={this.onChange} placeholder="name" />
                 <input  id="budget" name="budget" type="number" onChange={this.onChange} placeholder="budget" />
-                <button onClick={this.submit} id="submit"> SUBMIT </button>
+                <button type="submit" onClick={this.submit} id="submit"> SUBMIT </button>
             </form> 
         )
     }
