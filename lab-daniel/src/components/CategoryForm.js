@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch, getState) => {
     return {
         create: (category) => dispatch(create(category)),
         destroy: (id) => dispatch(destroy(id)),
-        update: values => dispatch(update(values))
+        update: (category) => dispatch(update(category))
     }
 }
 

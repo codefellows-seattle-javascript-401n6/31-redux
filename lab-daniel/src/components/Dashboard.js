@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { create, destroy } from '../actions/category-actions';
+import { create, destroy, update } from '../actions/category-actions';
 import CategoryForm from './CategoryForm.js';
 import CategoryItem from './CategoryItem.js';
 import CategoryList from './CategoryList.js';
@@ -28,7 +28,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
     return {
         create: (category) => dispatch(create(category)),
-        destroy: (id) => dispatch(destroy(id))
+        destroy: (id) => dispatch(destroy(id)),
+        update: (category) => dispatch(update(category)),
     }
 }
 
