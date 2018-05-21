@@ -1,3 +1,23 @@
 body {
-    background-color: lightblue;
+    background-color: rgb(101, 216, 255);
   }
+
+h1 {
+  font-family: 'Gill Sans', sans-serif;
+}
+
+h2 {
+  font-family: 'Lucida Sans', sans-serif;
+}
+
+input {
+  background-color: rgb(215, 219, 233);
+  font-family: 'Lucida Sans', sans-serif;
+  color: rgb(4, 4, 4);
+}
+
+li {
+  background-color:rgb(215, 219, 233);
+  width: fit-content;
+  border-radius: 10%;
+}

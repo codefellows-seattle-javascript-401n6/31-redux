@@ -1,8 +1,7 @@
-'use strict';
-
 import React from 'react';
 import ReactDom from 'react-dom';
 import App from './components/app.jsx';
+import './style/main.scss';
 
 let root = document.createElement('div');
 document.body.appendChild(root);
