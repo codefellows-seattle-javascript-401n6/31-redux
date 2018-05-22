@@ -16,14 +16,14 @@ export function categoryCreate(categoryObj) {
 export function categoryUdate(category) {
   return {
     type: CATEGORY_UPDATE, 
-    // category: category //is the same as line below
     category
+    // category: category //is the same as line above
   };
 };
 
-export function categoryDestroy(uuid) {
+export function categoryDestroy(uuidv4) {
   return {
     type: CATEGORY_DESTROY,
-    uuid
+    uuidv4
   };
 };
