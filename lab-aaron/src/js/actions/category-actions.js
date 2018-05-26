@@ -13,17 +13,17 @@ export function categoryCreate(categoryObj) {
   };
 };
 
-export function categoryUdate(category) {
+export function categoryUpdate(categoryObj) {
   return {
     type: CATEGORY_UPDATE, 
-    category
-    // category: category //is the same as line above
+    categoryObj
+    // category: category     //is the same as line above
   };
 };
 
 export function categoryDestroy(uuidv4) {
   return {
     type: CATEGORY_DESTROY,
-    uuidv4
+    id: uuidv4
   };
 };

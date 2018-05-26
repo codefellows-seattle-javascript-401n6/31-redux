@@ -12,12 +12,28 @@ class CategoryItem extends React.Component {
     };
 
 
-controlDelete = (event) => {
-      event.preventDefault();
-      let id = event.target.id;
-      this.props.categoryDestroy(id);
+controlDelete = (id) => {
+      this.props.onDestroy(id);
     };
 
 
+
+render() {
+
+  return (
+    <div className="categoryFormItem">
+      <div>
+        {this.props.arrayElement.name}--${this.props.arrayElement.price}
+      </div>
+      <button onClick={() => this.controlDelete(this.props.arrayElement.id)}>
+        Remove Item (Category)
+      </button>
+      <CategoryForm category={this.props.arrayElement} onSubmit={this.props.update}
+      name="update"/>
+    </div>
+  )
+}
     
 };
+
+export default CategoryItem;

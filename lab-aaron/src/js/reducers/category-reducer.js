@@ -14,29 +14,58 @@ const initialReducerState = {
 
 function categoryReducer(state, action) {
   if (state === undefined) {
+    console.log('ping initialState');
     return initialReducerState;
   };
   
   
   let newState = {};
+  let newList = [];
+  let currentCategories;
 
-  // let newList;
   
 console.log('action: ', action.type, state);
 
   switch(action.type) {
     case CATEGORY_CREATE:
-    // newList = state.categoriesList.map(array => {
-    //   return array;
-    // });
-    return Object.assign(newState, state, {categoriesList: state.categoriesList.push(action.categoryObj)});
+    console.log('CREATE ACTION');
+    newList = state.categoriesList.map(array => {
+      return array;
+    });
+    console.log('newList: ', newList);
+    const addedPropsObj = {
+      ...action.categoryObj,
+      timeStamp: new Date(),
+      id: uuidv4(),
+    };
+    newList.push(addedPropsObj);
+    console.log('newList after .push(): ', newList);
+    return Object.assign(newState, {
+      categoriesList: newList
+    });
+    // return Object.assign(newState, state, {categoriesList: state.categoriesList.push(action.categoryObj)});
     
     case CATEGORY_UPDATE:
-      return ;
+      currentCategories = state.categoriesList.map(element => {
+        console.log('UPDATE ACTION');
+        if (element.id === action.categoryObj.id) {
+          return Object.assign({}, element, action.categoryObj)
+        } else {
+          return element;
+        };
+      });
+      return Object.assign(newState, state, {categoriesList: currentCategories});
     
     case CATEGORY_DESTROY:
-      return ;
-  };
+      currentCategories = state.categoriesList.filter(element => {
+        console.log('DELETE ACTION', action.id);
+        return element.id !== action.id;
+      });
+      return Object.assign(newState, state, { categoriesList: currentCategories });
+
+    default:
+    return state;
+  }
 };
 
 export default categoryReducer;
