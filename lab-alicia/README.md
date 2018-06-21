@@ -7,7 +7,7 @@
 This is a simple budget tracking application providing the ability to create a category with a corresponding budget. There is also functionality to delete or update the category name or budget.
 
 ## Getting Started
-- Clone the repo to your local directory from [here] (www....)
+- Clone the repo to your local directory from [here] (https://github.com/alicialycan/31-redux)
 - Install all the necessary modules using the `npm install` command
 - Run `npm run hot`, open browser to http://localhost:8080
 
