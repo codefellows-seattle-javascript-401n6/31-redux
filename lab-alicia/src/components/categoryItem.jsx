@@ -34,35 +34,34 @@ class CategoryItem extends React.Component {
 
   render() {
     if(this.props.isEditing === true) {
-      return (
-        <div>
-          <CategoryForm name="update" 
-            id={this.props.id}>
-          </CategoryForm>
-          <button 
-            onClick={this.toggleOffEdit}
-            id={this.props.id}>
+      return <div>
+        <CategoryForm 
+          buttonText="update" 
+          id={this.props.id}>
+        </CategoryForm>
+        <button 
+          onClick={this.toggleOffEdit}
+          id={this.props.id}>
             Cancel
-          </button>
-        </div>
-      );
+        </button>
+      </div>;
     }
-    return (
-      <li key={this.props.key} 
-        id={this.props.id}>
-        {this.props.name}: ${this.props.budget} 
-        <button 
-          id={this.props.id} 
-          onClick={this.handleDelete}>
+    return <li
+      key={this.props.key}
+      id={this.props.id}
+    > 
+      {this.props.name}: ${this.props.budget} 
+      <button 
+        id={this.props.id} 
+        onClick={this.handleDelete}>
           Delete
-        </button>
-        <button 
-          id={this.props.id} 
-          onClick={this.toggleEdit}>
+      </button>
+      <button 
+        id={this.props.id} 
+        onClick={this.toggleEdit}>
           Edit
-        </button>
-      </li> 
-    );
+      </button>
+    </li>;
   }
 }
 
@@ -73,7 +72,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     categoryUpdate: (values) => dispatch(categoryUpdate(values)),
-    categoryDestroy: id => dispatch(categoryDestroy(id))
+    categoryDestroy: (id) => dispatch(categoryDestroy(id))
   };
 };
 

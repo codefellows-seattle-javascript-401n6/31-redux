@@ -1,35 +1,20 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {
-  categoryCreate,
-  categoryUpdate,
-  categoryDestroy,
-} from '../action/category-actions.jsx';
-
 import CategoryList from './categoryList.jsx';
 import CategoryForm from './categoryForm.jsx';
 
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return <div>
       <h1>Track Your Budget</h1>
       <h2>Create A Category:</h2>
-      <CategoryForm name="create"></CategoryForm>
-      <CategoryList></CategoryList>
+      <CategoryForm buttonText="create" />
+      <CategoryList />
     </div>;
   }
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories,
-});
-
-const mapDispatchToProps = (dispatch, getState) => {
-  return {
-    categoryCreate: () => dispatch(categoryCreate()),
-    categoryUpdate: values => dispatch(categoryUpdate(values)),
-    categoryDestroy: id => dispatch(categoryDestroy(id)),
-  };
-};
-
-export default connect (mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;

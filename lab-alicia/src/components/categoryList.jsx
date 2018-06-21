@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import CategoryItem from './categoryItem.jsx';
+import {categoryCreate} from '../action/category-actions.jsx';
 
 class CategoryList extends React.Component {
   constructor(props) {
-    super(props);
+    super(props); 
 
     this.displayAllCategories = this.displayAllCategories.bind(this);
   }

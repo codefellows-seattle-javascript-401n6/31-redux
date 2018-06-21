@@ -9,7 +9,7 @@ const initialState = {
   categories: [],
 };
 
-export default function categoryReducer(state, action) {
+const categoryReducer = (state, action) => {
   if (state === undefined) {
     return initialState;
   }
@@ -17,18 +17,21 @@ export default function categoryReducer(state, action) {
   let newState = {};
   let currentCategories;
   let categoryIndex;
+  let newCategory;
+  let categoryToUpdate;
+  let categoryToRemove;
 
   switch (action.type) {
   case CATEGORY_CREATE:
     currentCategories = state.categories.slice(); //making an arr of current categories
-    let newCategory = Object.assign({},
+    newCategory = Object.assign({},
       { id: uuidv4(), isEditing: false }, action.value);
     currentCategories.push(newCategory);
     return Object.assign(newState, state, { categories: currentCategories });
 
   case CATEGORY_UPDATE:
     currentCategories = state.categories.slice();
-    let categoryToUpdate = currentCategories.find(category => {
+    categoryToUpdate = currentCategories.find(category => {
       return category.id === action.values.id;
     });
     categoryIndex = currentCategories.indexOf(categoryToUpdate);
@@ -39,15 +42,17 @@ export default function categoryReducer(state, action) {
     if (action.values.budget) {
       currentCategories[categoryIndex].budget = action.values.budget;
     }
-    return Object.assign(newState, state, { categories: currentCategories });
+    return Object.assign(newState, state, {categories: currentCategories});
 
   case CATEGORY_DESTROY:
     currentCategories = state.categories.slice();
-    let categoryToRemove = currentCategories.find(category => {
+    categoryToRemove = currentCategories.find(category => {
       return category.id === action.id;
     });
     categoryIndex = currentCategories.indexOf(categoryToRemove);
     currentCategories.splice(categoryIndex, 1);
     return Object.assign(newState, state, { categories: currentCategories });
   }
-}
+};
+
+export default categoryReducer;

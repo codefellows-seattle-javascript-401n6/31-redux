@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {
   categoryCreate,
   categoryUpdate,
-  categoryDestroy,
 } from '../action/category-actions.jsx';
 
 class CategoryForm extends React.Component {
@@ -26,13 +25,13 @@ class CategoryForm extends React.Component {
 
   handleSubmit(ev) {
     ev.preventDefault();
-    if (this.props.name === 'create') {
+    if (this.props.buttonText === 'create') {
       this.props.categoryCreate(this.state);
     }
-    if (this.props.name === 'update') {
+    if (this.props.buttonText === 'update') {
       let newValue = Object.assign(this.state, {isEditing: false, id: this.props.id
       });
-      this.props.categoryUpdate(this.state); //newvalue
+      this.props.categoryUpdate(newValue); //newvalue
     }
   }
 
@@ -53,10 +52,10 @@ class CategoryForm extends React.Component {
           placeholder="budget" 
           value={this.state.budget}
         />
-        <button 
-          type="submit">
-          Submit
+        <button type='submit'>
+          {this.props.buttonText === 'create' ? 'Submit Task' : 'Update Task'} 
         </button>
+
       </form>
     );
   }
