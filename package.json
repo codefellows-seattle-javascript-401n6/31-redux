@@ -1,0 +1,32 @@
+{
+  "name": "31-redux",
+  "version": "1.0.0",
+  "description": "lab-31",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/splitpeasoup/31-redux.git"
+  },
+  "author": "Caitlin Sweeney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/splitpeasoup/31-redux/issues"
+  },
+  "homepage": "https://github.com/splitpeasoup/31-redux#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "node-sass": "^4.9.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "redux": "^4.0.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.7.0"
+  }
+}
