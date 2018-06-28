@@ -9,8 +9,9 @@ import {
   Link
 } from 'react-router-dom';
 
-import counterAppReducer from '../reducer/budget-reducer.jsx';
-const store = createStore(counterAppReducer);
+import categoryAppReducer from '../reducer/budget-reducer.jsx';
+const store = createStore(categoryAppReducer);
+// const store = createStore(categoryAppReducer, windows.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 import Dashboard from './Dashboard.jsx';
 // console.log(Dashboard);
@@ -18,9 +19,9 @@ import Dashboard from './Dashboard.jsx';
 class App extends React.Component {
   constructor(props){
   super(props);
-  this.state = {
-    title: 'Budget Tracker'
-  }
+    this.state = {
+      title: 'Budget Tracker'
+    }
   }
 
   render() {
@@ -30,13 +31,11 @@ class App extends React.Component {
         <Router>
           <div>
             <h1>{this.state.title}</h1>
-            {/* <h1>Budget Tracker</h1> */}
             <Route exact path='/' component={Dashboard}/>
           </div>
         </Router>
       </Provider>
     )
-    console.log('budget-app Rendered');
   }
 }
 
