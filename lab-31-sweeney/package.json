@@ -1,5 +1,5 @@
 {
-  "name": "lab-alicia",
+  "name": "lab-31",
   "version": "1.0.0",
   "description": "",
   "main": "main.jsx",
@@ -10,7 +10,7 @@
     "hot": "webpack-dev-server --inline --hot --history-api-fallback --open"
   },
   "keywords": [],
-  "author": "",
+  "author": "caitlin sweeney",
   "license": "ISC",
   "dependencies": {
     "babel-core": "^6.26.3",
